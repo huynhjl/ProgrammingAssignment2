@@ -14,17 +14,22 @@
 makeCacheMatrix <- function(x = matrix()) {
   # xinv contains the inverse of matrix x if previously computed or NULL
   xinv <- NULL
+
   # replaces value of current matrix and reset xinv
   set <- function(y) {
     x <<- y
     minv <<- NULL
   }
+
   # retrieves value of current matrix
   get <- function() x
+
   # set xinv to its value
   setinv <- function(inv) xinv <<- inv
   # get xinv from cache (can return NULL)
+
   getinv <- function() xinv
+
   # return our list wrapper
   list(set = set, get = get,
        setinv = setinv,
@@ -41,9 +46,11 @@ cacheSolve <- function(x, ...) {
     message("getting cached data")
     return(xinv)
   }
+
   # not found, compute inverse of matrix as xinv, cache xinv and return xinv
   data <- x$get()
   xinv <- solve(data)
   x$setinv(xinv)
   xinv
 }
+
